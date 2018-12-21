@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supervons.cpj.mapper.UserMapper">
+    <select id="queryList" resultType="com.supervons.cpj.entity.User">
+        SELECT u.id, u.username, u.password FROM student2 u
+    </select>
+
+</mapper>
