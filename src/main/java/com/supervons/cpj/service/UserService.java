@@ -10,13 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class UserService {
+public interface UserService {
 
-    @Autowired
-    private UserMapper userMapper;
-
-    public List<User> queryList() {
-        List<User> queryList = userMapper.queryList();
-        return queryList;
-    }
+    public List<User> queryList();
 }
