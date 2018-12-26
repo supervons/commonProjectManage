@@ -6,12 +6,13 @@ import com.supervons.cpj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override
@@ -21,8 +22,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User queryUserById() {
-        User queryUser = userMapper.queryUserById();
+    public User queryUserById(String username,String password) {
+        User queryUser = userMapper.queryUserById(username,password);
         return queryUser;
     }
 }

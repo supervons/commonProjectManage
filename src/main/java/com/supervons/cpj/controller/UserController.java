@@ -3,10 +3,7 @@ package com.supervons.cpj.controller;
 import com.supervons.cpj.entity.User;
 import com.supervons.cpj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,8 +27,8 @@ public class UserController {
 
     @RequestMapping("/queryUserById")
     @ResponseBody
-    public User queryUserById() {
-        return userService.queryUserById();
+    public User queryUserById(@RequestParam("loginId") String loginId, @RequestParam("passWord") String passWord) {
+        return userService.queryUserById(loginId,passWord);
     }
 
 

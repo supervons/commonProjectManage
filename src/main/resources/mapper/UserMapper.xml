@@ -2,8 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supervons.cpj.mapper.UserMapper">
-    <select id="queryList" resultType="com.supervons.cpj.entity.User">
-        SELECT u.id, u.username, u.password FROM student2 u
+
+    <resultMap id="UserInfoMapping" type="com.supervons.cpj.entity.User">
+        <!-- id属性来映射主键字段 Id attribute to map primary key field-->
+        <id column="id" property="id" javaType="String"/>
+        <!-- result属性映射非主键字段 Result attribute maps non-primary key fields-->
+        <result column="login_id" property="loginId" javaType="String"/>
+        <result column="pass_word" property="passWord" javaType="String"/>
+        <result column="user_name" property="userName" javaType="String"/>
+        <result column="user_sex" property="userSex" javaType="String"/>
+        <result column="user_address" property="userAddress" javaType="String"/>
+        <result column="user_sex" property="userSex" javaType="String"/>
+        <result column="user_cellphone" property="userCellPhone" javaType="String"/>
+    </resultMap>
+
+    <!-- 查询所有用户列表 Query all user lists -->
+    <select id="queryList" resultMap="UserInfoMapping">
+        SELECT u.id, u.login_id, u.pass_word, u.user_name, u.user_sex,
+         u.user_address, u.user_cellphone FROM user_info u
+    </select>
+
+    <!-- 根据用户登录id和密码查询用户 Query users based on user login id and password-->
+    <select id="queryUserById" resultMap="UserInfoMapping" parameterType="java.lang.String">
+        SELECT u.id, u.login_id, u.pass_word FROM user_info u where login_id = #{loginId} and pass_word = #{passWord}
     </select>
 
 </mapper>

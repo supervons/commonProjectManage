@@ -1,18 +1,42 @@
 package com.supervons.cpj.entity;
 
 public class User {
-    private Integer id;
+    private String id;
 
-    private String userName;
+    private String loginId;
 
     private String passWord;
 
-    public Integer getId() {
+    private String userName;
+
+    private String userSex;
+
+    private String userAddress;
+
+    private String userCellPhone;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     public String getUserName() {
@@ -23,11 +47,27 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getUserSex() {
+        return userSex;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public String getUserCellPhone() {
+        return userCellPhone;
+    }
+
+    public void setUserCellPhone(String userCellPhone) {
+        this.userCellPhone = userCellPhone;
     }
 }

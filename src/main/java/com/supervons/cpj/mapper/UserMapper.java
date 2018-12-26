@@ -9,6 +9,6 @@ import java.util.List;
 public interface UserMapper {
     List<User> queryList();
 
-    User queryUserById();
+    User queryUserById(String loginId, String passWord);
 
 }

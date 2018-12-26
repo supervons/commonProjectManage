@@ -14,5 +14,5 @@ public interface UserService {
 
     public List<User> queryUserList();
 
-    public User queryUserById();
+    public User queryUserById(String loginId,String passWord);
 }
