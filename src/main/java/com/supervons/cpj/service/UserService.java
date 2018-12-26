@@ -12,5 +12,7 @@ import java.util.List;
 @Service
 public interface UserService {
 
-    public List<User> queryList();
+    public List<User> queryUserList();
+
+    public User queryUserById();
 }

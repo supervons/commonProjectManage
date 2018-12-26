@@ -33,6 +33,6 @@ public class HelloController {
     @RequestMapping("/queryUserList")
     @ResponseBody
     public List<User> queryUserById() {
-        return userService.queryList();
+        return userService.queryUserList();
     }
 }

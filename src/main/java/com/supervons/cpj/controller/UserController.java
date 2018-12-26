@@ -24,8 +24,14 @@ public class UserController {
 
     @RequestMapping("/queryUserList")
     @ResponseBody
-    public List<User> queryUserById() {
-        return userService.queryList();
+    public List<User> queryUserList() {
+        return userService.queryUserList();
+    }
+
+    @RequestMapping("/queryUserById")
+    @ResponseBody
+    public User queryUserById() {
+        return userService.queryUserById();
     }
 
 
