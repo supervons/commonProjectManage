@@ -19,16 +19,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/queryUserList")
     @ResponseBody
+    @RequestMapping("/queryUserList")
     public List<User> queryUserList() {
         return userService.queryUserList();
     }
 
-    @RequestMapping("/queryUserById")
     @ResponseBody
+    @RequestMapping("/queryUserById")
     public User queryUserById(@RequestParam("loginId") String loginId, @RequestParam("passWord") String passWord) {
         return userService.queryUserById(loginId,passWord);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public int addUser(@RequestBody User user) {
+        return userService.addUser(user);
     }
 
 

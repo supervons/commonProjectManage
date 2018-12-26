@@ -11,4 +11,6 @@ public interface UserMapper {
 
     User queryUserById(String loginId, String passWord);
 
+    public int addUser(User user);
+
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,5 +26,12 @@ public class UserServiceImpl implements UserService {
     public User queryUserById(String username,String password) {
         User queryUser = userMapper.queryUserById(username,password);
         return queryUser;
+    }
+
+    @Override
+    public int addUser(User user){
+        user.setId(UUID.randomUUID().toString().replace("-",""));
+        int result  = userMapper.addUser(user);
+        return result;
     }
 }

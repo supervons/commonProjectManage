@@ -27,4 +27,9 @@
         SELECT u.id, u.login_id, u.pass_word FROM user_info u where login_id = #{loginId} and pass_word = #{passWord}
     </select>
 
+    <insert id="addUser" parameterType="com.supervons.cpj.entity.User">
+        INSERT INTO user_info(id,login_id,pass_word,user_name,user_sex,user_address,user_cellphone)
+        VALUES(#{id}, #{loginId}, #{passWord}, #{userName}, #{userSex}, #{userAddress}, #{userCellPhone})
+    </insert>
+
 </mapper>
