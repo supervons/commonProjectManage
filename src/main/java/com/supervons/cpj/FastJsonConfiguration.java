@@ -21,7 +21,7 @@ public class FastJsonConfiguration extends WebMvcConfigurationSupport {
         //创建fastjson消息转换器
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
 
-        //升级最新版本需加=============================================================
+        //升级最新版本需加支持的类型
         List<MediaType> supportedMediaTypes = new ArrayList<>();
         supportedMediaTypes.add(MediaType.APPLICATION_JSON);
         supportedMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);

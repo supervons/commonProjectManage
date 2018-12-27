@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@MapperScan("com.supervons.cpj.entity")
 @SpringBootApplication
 public class CpjApplication {
 
