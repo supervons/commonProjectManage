@@ -38,6 +38,12 @@ public class UserController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    public User updateUser(@RequestBody User user) {
+        return userInfoRepository.saveAndFlush(user);
+    }
+
+    @ResponseBody
     @RequestMapping("/queryUserById")
     public Optional<User> queryUserById(@RequestParam("id") String id) {
         return userInfoRepository.findById(id);
