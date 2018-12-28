@@ -3,16 +3,32 @@ package com.supervons.cpj;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.supervons.cpj.Interceptor.SessionInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 通用 Configuration 配置
+ * 1，拦截器配置
+ * 2，FastJson 返回 JSON 配置
+ */
 @Configuration
-public class FastJsonConfiguration extends WebMvcConfigurationSupport {
+public class CommonConfiguration extends WebMvcConfigurationSupport {
+
+    @Autowired
+    private SessionInterceptor loginInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
+    }
 
     @Override
     protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

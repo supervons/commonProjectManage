@@ -34,6 +34,10 @@ spring:
   mvc:
     servlet:
       path: /commonProject
+  jackson:
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: true
 mybatis:
   mapper-locations: classpath*:mapper/**Mapper.xml
   type-aliases-package: com.supervons.cpj.entity
