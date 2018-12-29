@@ -3,9 +3,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://xx.xx.xx.xx:3306/commonProject?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
-    username: xxx
-    password: xxx
+    url: jdbc:mysql://xx.xx.xx.xx:3306/commonProject?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: xxxxxx
+    password: xxxxxx
     #最大活跃数
     maxActive: 20
     #初始化数量

@@ -41,3 +41,23 @@ INSERT INTO `user_info` VALUES ('11111', 'supervons', 'supervons', '测试', '�
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+--  Table structure for `logger_infos`
+-- ----------------------------
+DROP TABLE IF EXISTS `logger_infos`;
+CREATE TABLE `logger_infos` (
+	`logger_id` varchar(50) NOT NULL,
+	`logger_client_ip` varchar(30) DEFAULT NULL,
+	`logger_uri` varchar(255) DEFAULT NULL,
+	`logger_type` varchar(50) DEFAULT NULL,
+	`logger_method` varchar(50) DEFAULT NULL,
+	`logger_param_date` longtext DEFAULT NULL,
+	`logger_session_ud` varchar(100) DEFAULT NULL,
+	`logger_time` timestamp NULL DEFAULT NULL,
+	`logger_return_time` varchar(50) DEFAULT NULL,
+	`logger_return_data` longtext DEFAULT NULL,
+	`logger_http_status_code` varchar(10) DEFAULT NULL,
+	`logger_time_consuming` int(8) DEFAULT NULL,
+	PRIMARY KEY (`logger_id`)
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ROW_FORMAT=COMPACT COMMENT='' CHECKSUM=0 DELAY_KEY_WRITE=0;
