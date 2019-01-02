@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,8 +58,8 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/loginAction")
-    public User loginAction(@RequestParam("loginId") String loginId, @RequestParam("passWord") String passWord) {
-        return userService.queryUserById(loginId,passWord);
+    public User loginAction(@RequestBody HashMap<String, String> map) {
+        return userService.queryUserById(map.get("loginId"),map.get("passWord"));
     }
 
 
