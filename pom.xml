@@ -88,7 +88,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <optional>false</optional>
+            <optional>true</optional>
         </dependency>
         <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
         <dependency>
@@ -104,7 +104,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <fork>true</fork>
+                    <fork>false</fork>
                 </configuration>
             </plugin>
         </plugins>

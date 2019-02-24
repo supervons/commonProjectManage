@@ -1,12 +1,12 @@
 package com.supervons.cpj.controller;
 
+import com.supervons.cpj.entity.APIResponse;
 import com.supervons.cpj.entity.User;
 import com.supervons.cpj.repository.UserInfoRepository;
 import com.supervons.cpj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -57,10 +57,18 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping("/loginAction")
-    public User loginAction(@RequestBody HashMap<String, String> map) {
-        return userService.queryUserById(map.get("loginId"),map.get("passWord"));
+    @RequestMapping(value = "/loginAction", method = RequestMethod.POST)
+    public APIResponse<User> loginAction(@RequestBody HashMap<String, String> map) {
+        APIResponse apiResponse = null;
+        System.out.println(map.get("loginId") + map.get("passWord"));
+        User tempUser = userService.queryUserById(map.get("loginId"),map.get("passWord"));
+        if(tempUser!=null){
+            apiResponse = APIResponse.success();
+            apiResponse.setData(tempUser);
+        }else{
+            apiResponse = APIResponse.fail("登录失败，用户名或密码错误！");
+        }
+        return apiResponse;
     }
-
 
 }

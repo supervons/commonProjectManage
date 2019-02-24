@@ -24,7 +24,7 @@
 
     <!-- 根据用户登录id和密码查询用户 Query users based on user login id and password-->
     <select id="queryUserById" resultMap="UserInfoMapping" parameterType="java.lang.String">
-        SELECT u.id, u.login_id, u.pass_word FROM user_info u where login_id = #{loginId} and pass_word = #{passWord}
+        SELECT u.id, u.login_id, u.pass_word, u.user_name FROM user_info u where login_id = #{loginId} and pass_word = #{passWord}
     </select>
 
     <insert id="addUser" parameterType="com.supervons.cpj.entity.User">
