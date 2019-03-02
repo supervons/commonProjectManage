@@ -61,3 +61,24 @@ CREATE TABLE `logger_infos` (
 	`logger_time_consuming` int(8) DEFAULT NULL,
 	PRIMARY KEY (`logger_id`)
 ) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ROW_FORMAT=COMPACT COMMENT='' CHECKSUM=0 DELAY_KEY_WRITE=0;
+
+-- ----------------------------
+--  Table structure for `news_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `news_info`;
+CREATE TABLE `news_info` (
+	`news_id` varchar(50) NOT NULL COMMENT '新闻编号',
+	`news_title` varchar(30) DEFAULT NULL COMMENT '新闻标题',
+	`news_introduction` varchar(255) DEFAULT NULL COMMENT '新闻简介',
+	`news_favorite_id` varchar(50) DEFAULT NULL COMMENT '点赞编号',
+	`news_comments_id` varchar(50) DEFAULT NULL COMMENT '评论编号',
+	`news_time` varchar(50) DEFAULT NULL COMMENT '发布时间',
+	`news_title_image` varchar(255) DEFAULT NULL COMMENT '标题图片',
+	`news_content_image` varchar(255) DEFAULT NULL COMMENT '内容图片',
+	`news_content` longtext DEFAULT NULL COMMENT '新闻内容',
+	PRIMARY KEY (`news_id`)
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ROW_FORMAT=COMPACT COMMENT='' CHECKSUM=0 DELAY_KEY_WRITE=0;
+
+BEGIN;
+INSERT INTO `user_info` VALUES ('11111', 'supervons', 'supervons', '测试', '男', '北京', '176xxxxxxxx');
+COMMIT;
