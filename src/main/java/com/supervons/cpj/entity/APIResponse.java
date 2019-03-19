@@ -1,5 +1,7 @@
 package com.supervons.cpj.entity;
 
+import java.util.Map;
+
 public class APIResponse <T> {
 
     private static final String CODE_SUCCESS = "success";
@@ -9,6 +11,7 @@ public class APIResponse <T> {
     private String code;
     private T data;
     private String msg;
+    private Map<String,Object> auxiliaryData;
 
     public APIResponse(){
 
@@ -66,5 +69,13 @@ public class APIResponse <T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public Map<String, Object> getAuxiliaryData() {
+        return auxiliaryData;
+    }
+
+    public void setAuxiliaryData(Map<String, Object> auxiliaryData) {
+        this.auxiliaryData = auxiliaryData;
     }
 }
