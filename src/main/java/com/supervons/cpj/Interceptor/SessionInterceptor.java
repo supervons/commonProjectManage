@@ -5,6 +5,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.supervons.cpj.entity.LoggerInfos;
 import com.supervons.cpj.repository.LoggerInfosRepository;
 import com.supervons.cpj.repository.UserInfoRepository;
+import com.supervons.cpj.srcurity.JWTUtil;
 import com.supervons.cpj.tools.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,13 @@ public class SessionInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String url = request.getRequestURI();
+        if(!url.contains("/user/loginAction")){
+            String jwtToken = request.getHeader("jwtToken")==null?"":request.getHeader("jwtToken").toString();
+            if(!JWTUtil.getAppUID(jwtToken)){
+                throw new Exception("非法请求！");
+            }
+        }
         //请求日志存储
         LoggerInfos loggerInfos = new LoggerInfos();
         String paramData = JSON.toJSONString(request.getParameterMap(),
