@@ -37,7 +37,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String url = request.getRequestURI();
-        if(!url.contains("/user/loginAction")){
+        if(!url.contains("/user/loginAction") && !url.contains("/user/addUser")){
             String jwtToken = request.getHeader("jwtToken")==null?"":request.getHeader("jwtToken").toString();
             if(!JWTUtil.getAppUID(jwtToken)){
                 throw new Exception("非法请求！");

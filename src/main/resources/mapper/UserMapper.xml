@@ -27,6 +27,11 @@
         SELECT u.id, u.login_id, u.pass_word, u.user_name FROM user_info u where login_id = #{loginId} and pass_word = #{passWord}
     </select>
 
+    <!-- 根据用户登录id查询用户是否存在，用于注册 Query users based on user login id and password-->
+    <select id="queryUserExistById" resultMap="UserInfoMapping" parameterType="java.lang.String">
+        SELECT u.id, u.login_id, u.pass_word, u.user_name FROM user_info u where login_id = #{loginId}
+    </select>
+
     <insert id="addUser" parameterType="com.supervons.cpj.entity.User">
         INSERT INTO user_info(id,login_id,pass_word,user_name,user_sex,user_address,user_cellphone)
         VALUES(#{id}, #{loginId}, #{passWord}, #{userName}, #{userSex}, #{userAddress}, #{userCellPhone})

@@ -29,6 +29,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User queryUserExistById(String username) {
+        User queryUser = userMapper.queryUserExistById(username);
+        return queryUser;
+    }
+
+    @Override
     public int addUser(User user){
         user.setId(UUID.randomUUID().toString().replace("-",""));
         int result  = userMapper.addUser(user);

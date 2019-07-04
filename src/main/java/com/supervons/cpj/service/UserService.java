@@ -16,5 +16,8 @@ public interface UserService {
 
     public User queryUserById(String loginId,String passWord);
 
+
+    public User queryUserExistById(String loginId);
+
     public int addUser(User user);
 }

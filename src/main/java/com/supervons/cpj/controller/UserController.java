@@ -21,6 +21,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    APIResponse apiResponse = null;
 
     @Autowired
     private UserService userService;
@@ -30,8 +31,24 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public int addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public APIResponse<User> addUser(@RequestBody HashMap<String, String> map) {
+        User tempUser = userService.queryUserExistById(map.get("loginId"));
+        if (tempUser != null) {
+            apiResponse = APIResponse.fail("该手机号已存在，请更换手机号后尝试！");
+        } else {
+            User newUser = new User();
+            newUser.setLoginId(map.get("loginId"));
+            newUser.setPassWord(map.get("passWord"));
+            int result = userService.addUser(newUser);
+            if (result == 1) {
+                Map resultMap = new HashMap<String, String>();
+                resultMap.put("resultMsg", "注册成功！");
+                apiResponse = APIResponse.success(resultMap);
+            } else {
+                apiResponse = APIResponse.fail("注册失败！");
+            }
+        }
+        return apiResponse;
     }
 
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
@@ -63,19 +80,19 @@ public class UserController {
     public APIResponse<User> loginAction(@RequestBody HashMap<String, String> map) {
         APIResponse apiResponse = null;
         System.out.println(map.get("loginId") + map.get("passWord"));
-        User tempUser = userService.queryUserById(map.get("loginId"),map.get("passWord"));
-        if(tempUser!=null){
+        User tempUser = userService.queryUserById(map.get("loginId"), map.get("passWord"));
+        if (tempUser != null) {
             apiResponse = APIResponse.success();
             apiResponse.setData(tempUser);
             try {
                 String jwtToken = JWTUtil.createToken(map.get("loginId"));
-                Map jwtMap = new HashMap<String,String>();
-                jwtMap.put("jwtToken",jwtToken);
+                Map jwtMap = new HashMap<String, String>();
+                jwtMap.put("jwtToken", jwtToken);
                 apiResponse.setAuxiliaryData(jwtMap);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             apiResponse = APIResponse.fail("登录失败，用户名或密码错误！");
         }
         return apiResponse;
