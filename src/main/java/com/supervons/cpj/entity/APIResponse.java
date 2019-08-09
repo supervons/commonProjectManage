@@ -1,7 +1,10 @@
 package com.supervons.cpj.entity;
 
+import lombok.Data;
+
 import java.util.Map;
 
+@Data
 public class APIResponse <T> {
 
     private static final String CODE_SUCCESS = "success";
@@ -47,35 +50,4 @@ public class APIResponse <T> {
         return new APIResponse(errorCode);
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public Map<String, Object> getAuxiliaryData() {
-        return auxiliaryData;
-    }
-
-    public void setAuxiliaryData(Map<String, Object> auxiliaryData) {
-        this.auxiliaryData = auxiliaryData;
-    }
 }
