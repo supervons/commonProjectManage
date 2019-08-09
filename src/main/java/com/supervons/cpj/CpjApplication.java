@@ -12,7 +12,8 @@ public class CpjApplication extends SpringBootServletInitializer {
         SpringApplication.run(CpjApplication.class, args);
     }
 
-    @Override//为了打包springboot项目
+    // 为了打包springboot项目
+    @Override
     protected SpringApplicationBuilder configure(
             SpringApplicationBuilder builder) {
         return builder.sources(this.getClass());

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.util.ArrayList;
@@ -26,18 +27,29 @@ public class CommonConfiguration extends WebMvcConfigurationSupport {
     private SessionInterceptor loginInterceptor;
 
     @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // 配置 swagger 相关访问地址
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+        super.addResourceHandlers(registry);
+    }
+
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
     }
 
     @Override
     protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        //调用父类配置
+        // 调用父类配置
         super.configureMessageConverters(converters);
-        //创建fastjson消息转换器
+        // 创建 fastjson 消息转换器
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
 
-        //升级最新版本需加支持的类型
+        // 升级最新版本需加支持的类型
         List<MediaType> supportedMediaTypes = new ArrayList<>();
         supportedMediaTypes.add(MediaType.APPLICATION_JSON);
         supportedMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
@@ -58,16 +70,16 @@ public class CommonConfiguration extends WebMvcConfigurationSupport {
         supportedMediaTypes.add(MediaType.TEXT_XML);
         fastJsonHttpMessageConverter.setSupportedMediaTypes(supportedMediaTypes);
 
-        //创建配置类
+        // 创建配置类
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        //修改配置返回内容的过滤
+        // 修改配置返回内容的过滤
         fastJsonConfig.setSerializerFeatures(
                 SerializerFeature.DisableCircularReferenceDetect,
                 SerializerFeature.WriteMapNullValue,
                 SerializerFeature.WriteNullStringAsEmpty
                 );
         fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
-        //将fastJson添加到视图消息转换器列表内
+        // 将fastJson添加到视图消息转换器列表内
         converters.add(fastJsonHttpMessageConverter);
     }
 }

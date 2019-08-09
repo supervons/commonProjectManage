@@ -5,6 +5,9 @@ import com.supervons.cpj.entity.User;
 import com.supervons.cpj.repository.UserInfoRepository;
 import com.supervons.cpj.service.UserService;
 import com.supervons.cpj.srcurity.JWTUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +23,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/user")
+@Api(description = "用户相关接口")
 public class UserController {
     APIResponse apiResponse = null;
 
@@ -31,7 +35,8 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public APIResponse<User> addUser(@RequestBody HashMap<String, String> map) {
+    @ApiOperation(value = "新增用户接口", notes="根据手机号密码注册用户，且校验重复性")
+    public APIResponse<User> addUser(@ApiParam(required = true, value = "用户信息map，包含loginId与passWord两个字符串") @RequestBody HashMap<String, String> map) {
         User tempUser = userService.queryUserExistById(map.get("loginId"));
         if (tempUser != null) {
             apiResponse = APIResponse.fail("该手机号已存在，请更换手机号后尝试！");
