@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 新闻相关 controller
+ *  新闻相关 controller
  */
 @RestController
 @RequestMapping("/news")
