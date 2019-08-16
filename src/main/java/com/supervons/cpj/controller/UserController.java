@@ -64,8 +64,15 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-    public User updateUser(@RequestBody User user) {
-        return userInfoRepository.saveAndFlush(user);
+    public APIResponse<User> updateUser(@RequestBody User user) {
+        User saveUser = userInfoRepository.saveAndFlush(user);
+        if(saveUser != null){
+            apiResponse = APIResponse.success();
+            apiResponse.setMsg("保存成功");
+        }else{
+            apiResponse = APIResponse.fail("保存失败");
+        }
+        return apiResponse;
     }
 
     @ResponseBody
