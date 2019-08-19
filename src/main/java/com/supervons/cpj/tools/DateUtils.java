@@ -39,6 +39,7 @@ public class DateUtils {
 
     public static void main(String[] args) throws IOException {
         System.out.println(DateUtils.getStandardTime());
+        System.out.println(DateUtils.getFormatDate());
     }
 
     private DateUtils(){}
@@ -50,7 +51,8 @@ public class DateUtils {
     }
 
     public static String  getFormatDate() throws IOException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        //yyyy-MM-dd HH:mm:ss  大小写错误可能会导致日期转换错误 MM是月份，mm是分
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(DateUtils.getStandardTime());
     }
 
