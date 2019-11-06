@@ -88,7 +88,7 @@ public class UserController {
         return userInfoRepository.findAll();
     }
 
-
+    @ResponseBody
     @RequestMapping(value = "/loginAction", method = RequestMethod.POST)
     public APIResponse<User> loginAction(@RequestBody HashMap<String, String> map) {
         APIResponse apiResponse = null;
