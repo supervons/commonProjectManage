@@ -19,7 +19,7 @@ import java.util.Map;
  *  新闻相关 controller
  */
 @RestController
-@RequestMapping("/news")
+@RequestMapping("news")
 @Api(description = "新闻信息等相关接口")
 public class NewsInfoController {
 

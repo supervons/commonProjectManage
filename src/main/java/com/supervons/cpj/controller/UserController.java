@@ -22,7 +22,7 @@ import java.util.Optional;
  * Register
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("user")
 @Api(description = "用户相关接口")
 public class UserController {
     APIResponse apiResponse = null;
@@ -33,10 +33,13 @@ public class UserController {
     @Autowired
     private UserInfoRepository userInfoRepository;
 
-    @ResponseBody
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+
+    @PostMapping("addUser")
     @ApiOperation(value = "新增用户接口", notes="根据手机号密码注册用户，且校验重复性")
-    public APIResponse<User> addUser(@ApiParam(required = true, value = "用户信息map，包含loginId与passWord两个字符串") @RequestBody HashMap<String, String> map) {
+    public APIResponse<User> addUser(
+            @ApiParam(required = true, value = "用户信息map，包含loginId与passWord两个字符串")
+            @RequestBody HashMap<String, String> map)
+    {
         User tempUser = userService.queryUserExistById(map.get("loginId"));
         if (tempUser != null) {
             apiResponse = APIResponse.fail("该手机号已存在，请更换手机号后尝试！");
@@ -56,14 +59,13 @@ public class UserController {
         return apiResponse;
     }
 
-    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+    @PostMapping(value = "deleteUser")
     public List<User> deleteUser(@RequestBody User user) {
         userInfoRepository.delete(user);
         return userInfoRepository.findAll();
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    @PostMapping(value = "updateUser")
     public APIResponse<User> updateUser(@RequestBody User user) {
         User saveUser = userInfoRepository.saveAndFlush(user);
         if(saveUser != null){
@@ -75,19 +77,18 @@ public class UserController {
         return apiResponse;
     }
 
-    @ResponseBody
-    @RequestMapping("/queryUserById")
+    @GetMapping("/queryUserById")
     public Optional<User> queryUserById(@RequestParam("id") String id) {
         return userInfoRepository.findById(id);
     }
 
-    @ResponseBody
+
     @RequestMapping("/queryUserList")
     public List<User> queryUserList() {
         return userInfoRepository.findAll();
     }
 
-    @ResponseBody
+
     @RequestMapping(value = "/loginAction", method = RequestMethod.POST)
     public APIResponse<User> loginAction(@RequestBody HashMap<String, String> map) {
         APIResponse apiResponse = null;
