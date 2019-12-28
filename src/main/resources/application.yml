@@ -35,6 +35,7 @@ spring:
   mvc:
     servlet:
       path: /commonProject
+    static-path-pattern: /static/**
   jackson:
     time-zone: GMT+8
     serialization:
